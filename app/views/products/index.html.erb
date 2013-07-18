@@ -1,0 +1,20 @@
+<% provide(:title, "Products") %>
+<div class="center jumbotron">
+	<h1>Products</h1>
+	  <% @products.each do |product| %>
+	  	<ul class="thumbnails">
+	  		<li class="span5 clearfix">
+					<div class="thumbnail clearfix">
+						<%= image_tag "http://placehold.it/320x200", :class => "pull-left span2 clearfix", 
+																												 :style => "margin-right:10px" %>
+						<div class="caption" class="pull-left">
+							<%= link_to "Select", product, :class => "btn btn-primary icon  pull-right" %>
+							<h4>
+								<%= link_to product.name, product %>
+							</h4>
+						</div>
+					</div>
+	  		</li>
+	  	</ul>
+	<% end %>
+</div>

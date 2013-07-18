@@ -1,0 +1,23 @@
+<% provide(:title, "New Category") %>
+<div class="center hero-unit">
+	<h1>New Category</h1>
+
+	<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@category) do |f| %>
+      <%= render 'shared/category_error_messages' %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :category_order %>
+      <%= f.number_field :category_order %>
+
+			<%= f.label :visible %>
+      <%= f.check_box :visible %><br /><br />
+
+      <%= f.submit "Create category", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+</div>
