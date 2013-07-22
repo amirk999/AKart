@@ -11,12 +11,26 @@ class ProductsController < ApplicationController
 		@product = Product.find(params[:id])
 	end
 
+	def update
+		@product = Product.find(params[:id])
+		if @product.update_attributes(params[:product])
+			redirect_to @product
+			flash[:success] = "Successfully saved product information"
+		else
+			render 'edit'
+			flash[:fail] = "Could not save the product information"
+		end
+	end
+
 	def new
 		@product = Product.new
+		@product.variant_categories.build
+		@product.variant_categories.first.variants.build
 	end
 
 	def create
 		@product = Product.new(params[:product])
+
 		if @product.save
 			flash[:success] = "Product created successfully"
 			redirect_to @product

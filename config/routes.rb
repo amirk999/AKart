@@ -1,7 +1,15 @@
 Akart2::Application.routes.draw do
 
   root :to => 'static_pages#home'
-  resources :categories, :products
+  resources :categories
+  
+  resources :products 
+  #do
+  #  resources :variant_categories do
+  #    resources :variant_categories
+  #  end
+  #end
+
 
   match '/help',      to: 'static_pages#help',      via: 'get'
   match '/contact',   to: 'static_pages#contact',   via: 'get'

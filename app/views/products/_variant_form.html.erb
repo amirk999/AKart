@@ -1,0 +1,29 @@
+<div class="control-group">
+  <%= f.label "Variant name", :class => "control-label" %>
+  <div class="controls">
+    <%= f.text_field :name, :class => "input-xxlarge" %>
+    <%= f.link_to_remove :class => "btn" do %>
+			Delete variant
+		<% end %>
+  </div>
+</div>
+
+<div class="control-group">
+  <%= f.label "Variant price", :class => "control-label" %>
+  <div class="controls">
+    <%= f.text_field :price, :class => "input-large" %>
+  </div>
+</div>
+
+<div class="controls">
+  <%= f.label :default, :class => "checkbox" do %>
+    <%= f.check_box :default %> Default
+  <% end %>
+</div>
+
+<div class="controls">
+  <%= f.label :visible, :class => "checkbox" do %>
+    <%= f.check_box :visible %> Visible
+  <% end %>
+</div>
+<br />

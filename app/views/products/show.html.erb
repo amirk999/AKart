@@ -1,5 +1,7 @@
 <% provide(:title, @product.name) %>
 <div class="center jumbotron">
 	<h1><%= @product.name %></h1>
-	
+	<h2><%= @product.description.html_safe %></h2>
+	<h3><%= number_to_currency @product.price %></h3>
+
 </div>

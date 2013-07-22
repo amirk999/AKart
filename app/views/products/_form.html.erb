@@ -1,0 +1,63 @@
+<%= nested_form_for @product, :html => { :class => "form-horizontal"} do |f| %>
+  <%= render 'shared/product_error_messages' %>
+
+  <div class="control-group">
+    <%= f.label :name, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :name, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :sku, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :sku, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :description, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_area :description, :class => "input-xxlarge", :rows => 3 %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :category_id, :class => "control-label" %>
+    <div class="controls">
+      <%= collection_select(:product, :category_id, Category.all, :id, :name, 
+                            {:prompt => 'Please select a category'}, {:class => "input-xxlarge"}) %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :price, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :price, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="controls">
+    <%= f.label :visible, :class => "checkbox" do %>
+      <%= f.check_box :visible %> Visible
+    <% end %>
+  </div>
+
+  <hr>
+
+  <div class="controls">
+    <p class="text-info"><strong>Variant categories and variants (optional)</strong></p>
+  </div>
+
+  <%= f.fields_for :variant_categories do |variant_category| %>
+  	<%= render "var_cat", :f => variant_category %>
+  <% end %>
+
+  <p>
+    <%= f.link_to_add :variant_categories, :class => "btn" do %>
+      New variant category
+    <% end %>
+  </p>
+
+  <%= f.submit "Save", class: "btn btn-large btn-primary" %>
+<% end %>
