@@ -1,14 +1,47 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "AKart", root_path, id: "logo" %>
-      <nav>
-        <ul class="nav pull-right">
-          <li><%= link_to "Home",    root_path %></li>
+<div class="navbar navbar-fixed-top navbar-inverse">  
+  <div class="navbar-inner">  
+    <div class="container">  
+      
+      <ul class="nav">  
+        <li>  
+          <%= link_to "AKart", root_path, id: "logo" %>
+        </li>  
+      </ul>
+
+      <ul class="nav">  
+        <li class="dropdown">  
+          <%= link_to categories_path, :class => "dropdown-toggle", 
+                                           :'data-toggle' => "dropdown" do %>
+            Shop
+            <b class="caret"></b> 
+          <% end %>
+          <ul class="dropdown-menu"> 
+            <% Category.all.each do |category| %>
+              <li><%= link_to category.name, category %></li>
+            <% end %>
+              <li><%= link_to "View all", categories_path %></li>
+          </ul>  
+        </li>  
+      </ul>
+
+      <ul class="nav">  
           <li><%= link_to "Help",    help_path %></li>
           <li><%= link_to "Contact", contact_path %></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header>
+          <li>
+            <% if user_signed_in? %>
+              <%= link_to current_user.email, "#" %>
+            <% else %>
+              <%= link_to "Log in", new_user_session_path %>
+            <% end %>
+          </li>
+          <li>
+            <% if !user_signed_in? %>
+              <%= link_to "Register", new_user_registration_path %>
+            <% else %>
+              <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
+            <% end %>
+          </li>
+      </ul>   
+    </div>  
+  </div>  
+</div> 

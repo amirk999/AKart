@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
-gem "nested_form"
+gem 'nested_form'
+gem 'devise'
+gem 'cancan'
+gem 'rolify'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

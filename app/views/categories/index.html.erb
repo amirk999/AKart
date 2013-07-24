@@ -1,5 +1,5 @@
 <% provide(:title, "Categories") %>
-<div class="center hero-unit">
+<div class="jumbotron">
 	<h1>Categories</h1>
 	  <% @categories.each do |category| %>
 	  	<ul class="thumbnails">
@@ -8,10 +8,14 @@
 						<%= image_tag "http://placehold.it/320x200", :class => "pull-left span2 clearfix", 
 																												 :style => "margin-right:10px" %>
 						<div class="caption" class="pull-left">
-							<%= link_to "Select", category, :class => "btn btn-primary icon  pull-right" %>
+							<%= link_to "Select", category, :class => "btn btn-primary icon pull-right" %>
 							<h4>
 								<%= link_to category.name, category %>
 							</h4>
+							<% if (current_user) && (current_user.has_role? :admin) %>
+								<%= link_to "Edit", edit_category_path(category), 
+																		:class => "btn btn-secondary icon pull-right" %>
+							<% end %>
 						</div>
 					</div>
 	  		</li>
