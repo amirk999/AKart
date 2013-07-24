@@ -3,8 +3,10 @@ class Category < ActiveRecord::Base
   attr_accessible :name, :category_order, :visible
 
   validates :name, :presence => true
+  validates :category_order, :presence => true
 
-  has_many :products
+  has_many :products, dependent: :destroy
 
   resourcify
+
 end

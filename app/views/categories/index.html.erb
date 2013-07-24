@@ -8,17 +8,25 @@
 						<%= image_tag "http://placehold.it/320x200", :class => "pull-left span2 clearfix", 
 																												 :style => "margin-right:10px" %>
 						<div class="caption" class="pull-left">
-							<%= link_to "Select", category, :class => "btn btn-primary icon pull-right" %>
+							<%= link_to "Open", category, :class => "btn btn-primary icon pull-right" %>
 							<h4>
 								<%= link_to category.name, category %>
 							</h4>
 							<% if (current_user) && (current_user.has_role? :admin) %>
 								<%= link_to "Edit", edit_category_path(category), 
-																		:class => "btn btn-secondary icon pull-right" %>
+																		:class => "btn btn-secondary icon pull-right" %><br /><br />
+								<%= link_to "Delete", category,
+																		:method => :delete,
+																		:class => "btn btn-mini btn-danger icon pull-right",
+																		:confirm => "Are you sure?" %>
 							<% end %>
 						</div>
 					</div>
 	  		</li>
 	  	</ul>
+	<% end %>
+	<% if (current_user) && (current_user.has_role? :admin) %>
+	<%= link_to "New category", new_category_path, 
+											:class => "btn btn-success icon" %>
 	<% end %>
 </div>

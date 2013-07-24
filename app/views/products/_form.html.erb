@@ -26,7 +26,9 @@
     <%= f.label :category_id, :class => "control-label" %>
     <div class="controls">
       <%= collection_select(:product, :category_id, Category.all, :id, :name, 
-                            {:prompt => 'Please select a category'}, {:class => "input-xxlarge"}) %>
+                            { :prompt => 'Please select a category',
+                              :selected => params[:cat_id] }, 
+                            { :class => "input-xxlarge" }) %>
     </div>
   </div>
 

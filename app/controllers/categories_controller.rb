@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
 
 	def show
 		@category = Category.find(params[:id])
+		@products = @category.products
 	end
 
 	def edit
@@ -15,6 +16,7 @@ class CategoriesController < ApplicationController
 
 	def new
 		@category = Category.new
+		@category.visible = true
 	end
 
 	def create
@@ -24,6 +26,24 @@ class CategoriesController < ApplicationController
 			redirect_to @category
 		else
 			render 'new'
+		end
+	end
+
+	def destroy
+		@category = Category.find(params[:id])
+		@category.destroy
+		flash[:success] = "Category deleted"
+		redirect_to categories_path
+	end
+
+	def update
+		@category = Category.find(params[:id])
+		if @category.update_attributes(params[:category])
+			redirect_to @category
+			flash[:success] = "Successfully saved category information"
+		else
+			render 'edit'
+			flash[:fail] = "Could not save the category information"
 		end
 	end
 end

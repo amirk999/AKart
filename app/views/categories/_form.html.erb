@@ -1,0 +1,25 @@
+<%= form_for @category, :html => { :class => "form-horizontal"} do |f| %>
+  <%= render 'shared/category_error_messages' %>
+
+  <div class="control-group">
+    <%= f.label :name, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :name, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :category_order, :class => "control-label" %>
+    <div class="controls">
+      <%= f.number_field :category_order, :class => "input-large" %>
+    </div>
+  </div>
+
+    <div class="controls">
+      <%= f.label :visible, :class => "checkbox" do %>
+        <%= f.check_box :visible, { checked: @category.visible } %> Visible
+      <% end %>
+    </div>
+  <hr>
+  <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>

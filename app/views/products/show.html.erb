@@ -1,7 +1,24 @@
 <% provide(:title, @product.name) %>
 <div class="center jumbotron">
 	<h1><%= @product.name %></h1>
-	<h2><%= @product.description.html_safe %></h2>
-	<h3><%= number_to_currency @product.price %></h3>
-
+	<h4><%= number_to_currency @product.price %></h4>
 </div>
+<hr>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">Images go here
+      <!--Sidebar content-->
+    </div>
+    <div class="span10">
+      <h2><%= @product.description.html_safe %></h2>
+      <%= link_to "Add to cart", "#", :class => "btn btn-success icon pull-right" %>
+    </div>
+  </div>
+</div>
+<% if (current_user) && (current_user.has_role? :admin) %>
+  <hr>
+	<%= link_to "Edit", edit_product_path(@product), :class => "btn btn-primary icon" %>
+	<%= link_to "Delete", @product, :method => :delete, 
+																	:class => "btn btn-danger icon", 
+																	:confirm => "Are you sure?" %>
+<% end %>

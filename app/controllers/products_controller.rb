@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+	load_and_authorize_resource
+	
 	def index
 		@products = Product.all
 	end
@@ -37,5 +39,13 @@ class ProductsController < ApplicationController
 		else
 			render 'new'
 		end
+	end
+
+	def destroy
+		@product = Product.find(params[:id])
+		@category = @product.category
+		@product.destroy
+		flash[:success] = "Product successfully deleted"
+		redirect_to @category
 	end
 end

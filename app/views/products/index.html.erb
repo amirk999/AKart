@@ -8,10 +8,20 @@
 						<%= image_tag "http://placehold.it/320x200", :class => "pull-left span2 clearfix", 
 																												 :style => "margin-right:10px" %>
 						<div class="caption" class="pull-left">
-							<%= link_to "Select", product, :class => "btn btn-primary icon  pull-right" %>
+							<%= link_to "Open", product, :class => "btn btn-primary icon  pull-right" %>
 							<h4>
 								<%= link_to product.name, product %>
 							</h4>
+
+							<% if (current_user) && (current_user.has_role? :admin) %>
+								<%= link_to "Edit", edit_product_path(product), 
+																		:class => "btn btn-secondary icon pull-right" %><br /><br />
+								<%= link_to "Delete", product,
+																		:method => :delete,
+																		:class => "btn btn-mini btn-danger icon pull-right",
+																		:confirm => "Are you sure?" %>
+							<% end %>
+
 						</div>
 					</div>
 	  		</li>
