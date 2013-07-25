@@ -10,6 +10,7 @@ class Ability
         can :manage, :all
     else
         can :read, :all
+        can :manage, Profile
     end
     #   if user.admin?
     #     can :manage, :all

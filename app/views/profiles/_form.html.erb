@@ -1,0 +1,63 @@
+<%= form_for @profile,  :as => :profile, :url => profile_path, 
+                        :method => :put, :html => { :class => "form-horizontal"} do |f| %>
+  <%= render 'error_messages' %>
+
+  <div class="control-group">
+    <%= f.label :first_name, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :first_name, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :last_name, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :last_name, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label 'Street address', :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :address1, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label 'Address line 2', :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :address2, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :city, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :city, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label 'State/Province', :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :state, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :country, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :country, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label 'Zip/Postal code', :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :postcode, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+  <hr>
+  <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>

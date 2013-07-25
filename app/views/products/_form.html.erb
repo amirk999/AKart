@@ -41,7 +41,7 @@
 
   <div class="controls">
     <%= f.label :visible, :class => "checkbox" do %>
-      <%= f.check_box :visible %> Visible
+      <%= f.check_box :visible, { checked: @product.visible } %> Visible
     <% end %>
   </div>
 

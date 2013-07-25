@@ -26,6 +26,7 @@ class ProductsController < ApplicationController
 
 	def new
 		@product = Product.new
+		@product.visible = true
 		@product.variant_categories.build
 		@product.variant_categories.first.variants.build
 	end

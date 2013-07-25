@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130723221922) do
+ActiveRecord::Schema.define(:version => 20130724195646) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.integer  "category_order"
-    t.boolean  "visible"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.boolean  "visible",        :default => true
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   add_index "categories", ["name"], :name => "index_categories_on_name", :unique => true
@@ -35,6 +35,20 @@ ActiveRecord::Schema.define(:version => 20130723221922) do
   end
 
   add_index "products", ["name"], :name => "index_products_on_name", :unique => true
+
+  create_table "profiles", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "postcode"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -77,22 +91,22 @@ ActiveRecord::Schema.define(:version => 20130723221922) do
   create_table "variant_categories", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.boolean  "visible"
+    t.boolean  "visible",                :default => true
     t.integer  "variant_category_order"
     t.integer  "product_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   create_table "variants", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.decimal  "price"
-    t.boolean  "visible"
+    t.boolean  "visible",             :default => true
     t.boolean  "default"
     t.integer  "variant_category_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
 end

@@ -1,0 +1,7 @@
+<% provide(:title, "Edit Profile") %>
+<div class="jumbotron">
+	<h1>Edit Profile</h1>
+	<%= render 'form' %>
+	<%= link_to "Change your e-mail or password", edit_user_registration_path, 
+							:class => "btn btn-inverse icon" %>
+</div>
