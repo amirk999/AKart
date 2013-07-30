@@ -1,0 +1,25 @@
+<%= form_for @product,  :as => :product, :url => cart_items_path(:product_id => @product), 
+                        :method => :post, :html => { :class => "form-horizontal"} do |f| %>
+	<%= render 'error_messages' %>
+
+	<% @product.variant_categories.each do |vc| %>
+		<strong><%= vc.name %></strong>
+
+		<% vc.variants.each do |v| %>
+			<%= f.label v.name, :class => "radio" do %>
+
+			<%= radio_button "variant", vc.id, v.id, :checked => (v == vc.variants.first) %>
+			<%= "#{v.name } (#{number_to_currency v.price})" %>
+
+			<% end %>
+		<% end %>
+		<br />
+	<% end %>
+
+	  <%= f.label "Quantity", :class => "control-label" do %>
+    	Quantity: <%= number_field "cart_item", "quantity", :class => "input-small", 
+    																											:value => "1", :min => "1" %>
+		<% end %>
+	<%= f.submit "Add to cart", class: "btn btn-success icon pull-right" %>
+
+<% end %>

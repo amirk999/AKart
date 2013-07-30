@@ -6,12 +6,13 @@
 <hr>
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span2">Images go here
-      <!--Sidebar content-->
+    <div class="span2">
+      Images go here
     </div>
     <div class="span10">
       <h2><%= @product.description.html_safe %></h2>
-      <%= link_to "Add to cart", "#", :class => "btn btn-success icon pull-right" %>
+      <hr>
+      <%= render 'product' %>
     </div>
   </div>
 </div>
