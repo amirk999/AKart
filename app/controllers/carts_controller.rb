@@ -9,9 +9,11 @@ class CartsController < ApplicationController
 			params[:cart_item].each do |key, value|
 				cart_item = CartItem.find(key)
 				cart_item.quantity = value
+				cart_item.calculateTotal
 				cart_item.save
 			end
 		end
+		@cart.updateTotal
 		flash[:success] = "Cart updated successfully"
 		redirect_to cart_path
 	end

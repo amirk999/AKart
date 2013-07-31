@@ -1,7 +1,7 @@
 <li class="span4">
   <div class="thumbnail">
     <%= link_to product_path(product) do %>
-      <img src="http://placehold.it/320x200" alt="ALT NAME" />
+			<%= image_tag product.main_image.image.url(:main) %>
     <% end %>
     <div class="caption">
       <h3><%= link_to product.name, product_path(product) %></h3>

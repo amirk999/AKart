@@ -2,6 +2,7 @@ class CartItemsController < ApplicationController
 
 	def create
 		@cart = current_cart
+
 		#validate that the product exists
 		product = Product.find(params[:product_id])
 
@@ -24,6 +25,9 @@ class CartItemsController < ApplicationController
 			end
 		end
 
+		@cart_item.calculateTotal
+		@cart.updateTotal
+
 		#save the cart item in the database
 		@cart_item.save
 
@@ -36,6 +40,7 @@ class CartItemsController < ApplicationController
 		@cart_item = CartItem.find(params[:id])
 		@cart_item.destroy
 		flash[:success] = "Successfully removed the item from your cart"
+		@cart.updateTotal
 		redirect_to cart_path
 	end
 

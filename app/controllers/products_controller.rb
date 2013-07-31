@@ -29,6 +29,9 @@ class ProductsController < ApplicationController
 		@product.visible = true
 		@product.variant_categories.build
 		@product.variant_categories.first.variants.build
+		@product.build_main_image
+		@product.build_slider_image
+		@product.additional_images.build
 	end
 
 	def create

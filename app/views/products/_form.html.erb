@@ -47,6 +47,36 @@
 
   <hr>
 
+  <%= f.fields_for :main_image, :html => {:multipart => true} do |asset| %>
+    <div class="control-group"> 
+      <%= f.label :main_image, :class => "control-label" %>
+      <div class="controls">
+        <%= asset.file_field :image, :id => "file" %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= f.fields_for :slider_image, :html => {:multipart => true} do |asset| %>
+    <div class="control-group"> 
+      <%= f.label :slider_image, :class => "control-label" %>
+      <div class="controls">
+        <%= asset.file_field :image, :id => "file" %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= f.fields_for :additional_images do |image| %>
+    <%= render "images", :f => image %>
+  <% end %>
+
+  <p>
+    <%= f.link_to_add :additional_images, :class => "btn" do %>
+      New image
+    <% end %>
+  </p>
+
+  <hr>
+
   <div class="controls">
     <p class="text-info"><strong>Variant categories and variants (optional)</strong></p>
   </div>

@@ -8,6 +8,15 @@
     </div>
   </div>
 
+  <%= f.fields_for :image, :html => {:multipart => true} do |asset| %>
+    <div class="control-group"> 
+      <%= f.label :image, :class => "control-label" %>
+      <div class="controls">
+        <%= asset.file_field :image, :id => "file" %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="control-group">
     <%= f.label :category_order, :class => "control-label" %>
     <div class="controls">

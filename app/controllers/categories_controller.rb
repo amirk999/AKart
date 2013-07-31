@@ -16,6 +16,7 @@ class CategoriesController < ApplicationController
 
 	def new
 		@category = Category.new
+		@category.build_image
 		@category.visible = true
 	end
 
@@ -25,6 +26,7 @@ class CategoriesController < ApplicationController
 			flash[:success] = "Category created successfully"
 			redirect_to @category
 		else
+			@category.build_image
 			render 'new'
 		end
 	end

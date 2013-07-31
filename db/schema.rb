@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130730180320) do
+ActiveRecord::Schema.define(:version => 20130731190401) do
 
   create_table "cart_items", :force => true do |t|
     t.decimal  "price"
@@ -42,6 +42,19 @@ ActiveRecord::Schema.define(:version => 20130730180320) do
   end
 
   add_index "categories", ["name"], :name => "index_categories_on_name", :unique => true
+
+  create_table "images", :force => true do |t|
+    t.integer  "category_id"
+    t.integer  "product_slider_id"
+    t.integer  "product_main_id"
+    t.integer  "product_additional_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "products", :force => true do |t|
     t.string   "name"

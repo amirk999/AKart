@@ -6,12 +6,12 @@ class CartItem < ActiveRecord::Base
   belongs_to :product
   has_and_belongs_to_many :variants
 
-  def totalPrice
-  	total = self.product.price
+  def calculateTotal
+  	total = self.product.price * self.quantity
 
   	self.variants.each do |v|
-  		total += v.price
+  		total += v.price * self.quantity
   	end
-  	total
+  	self.price = total
   end
 end
