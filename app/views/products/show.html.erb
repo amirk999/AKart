@@ -7,7 +7,22 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2">
-      <%= image_tag @product.main_image.image.url(:small) %> 
+      <div class="row">
+        <%= link_to @product.main_image.image.url(:popout), :class => "gallery", 
+                              :data => { :colorbox => true } do %>
+          <%= image_tag @product.main_image.image.url(:small) %>
+        <% end %> 
+      </div>
+      <br />
+      <% @product.additional_images.each do |image| %>
+        <div class="row">
+          <%= link_to image.image.url(:popout), :class => "gallery", 
+                              :data => { :colorbox => true } do %>
+          <%= image_tag image.image.url(:small) %>
+        <% end %> 
+        </div>
+        <br />
+      <% end %>
     </div>
     <div class="span10">
       <h2><%= @product.description.html_safe %></h2>

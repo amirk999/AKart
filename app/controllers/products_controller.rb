@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
 
 	def edit
 		@product = Product.find(params[:id])
+		@product.build_slider_image if @product.slider_image.nil?
 	end
 
 	def update

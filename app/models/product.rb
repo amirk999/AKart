@@ -26,7 +26,7 @@ class Product < ActiveRecord::Base
   	:allow_destroy => true
 
   accepts_nested_attributes_for :additional_images, 
-    :reject_if => lambda { |t| t[:additional_image].nil? },
+    :reject_if => lambda { |t| t[:image].nil? },
     :allow_destroy => true
 
   accepts_nested_attributes_for :slider_image

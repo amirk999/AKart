@@ -7,6 +7,7 @@ gem 'devise'
 gem 'cancan'
 gem 'rolify'
 gem "paperclip", "~> 3.0"
+gem "colorbox-rails", "~> 0.1.0"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
