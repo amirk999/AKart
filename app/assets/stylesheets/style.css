@@ -1,3 +1,7 @@
+.icon-shopping-cart {
+  background-position: -10% -10%;
+}
+
 body{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
@@ -125,9 +129,9 @@ label, select{
 	line-height: 20px;
 }
 
-.form-horizontal input[type="text"],.form-horizontal input[type="password"], .form-horizontal textarea{
+/*.form-horizontal input[type="text"],.form-horizontal input[type="password"], .form-horizontal textarea{
 width:90%;
-}
+}*/
 
 .form-small .form-horizontal input[type="text"], .form-small .form-horizontal input[type="password"], .form-small .form-horizontal textarea{
 width:40%;
@@ -632,9 +636,9 @@ header .lr{
 	max-height: 50px;
 }
 
-.cart .cart-quantity input{
+/*.cart .cart-quantity input{
 	max-width: 25px;
-}
+}*/
 
 /* Checkout */
 
@@ -658,7 +662,7 @@ header .lr{
 }
 
 .item{
-	min-height: 280px;
+	/*min-height: 280px;*/
 	max-height: 300px;
 	max-width: 250px;
 	margin: 10px auto;
@@ -734,10 +738,6 @@ header .lr{
 }
 
 /* Product main details */
-
-.product-main input{
-	max-width: 25px;
-}
 
 .product-main select{
 	margin-top:5px;

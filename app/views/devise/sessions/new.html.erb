@@ -1,32 +1,41 @@
-<h2>Log in</h2>
+<div class="items">
+  <div class="container">
+    <div class="row">
+      <div class="span9">
+        <h5 class="title">Log in</h5>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name),
-											 :html => { :class => "form-horizontal" }) do |f| %>
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),
+        											 :html => { :class => "form-horizontal" }) do |f| %>
 
-  <div class="control-group">
-    <%= f.label :email, :class => "control-label" %>
-    <div class="controls">
-      <%= f.email_field :email, :autofocus => true, :class => "input-xxlarge" %>
+          <div class="control-group">
+            <%= f.label :email, :class => "control-label" %>
+            <div class="controls">
+              <%= f.email_field :email, :autofocus => true, :class => "input-large" %>
+            </div>
+          </div>
+
+
+          <div class="control-group">
+            <%= f.label :password, :class => "control-label" %>
+            <div class="controls">
+              <%= f.password_field :password, :autocomplete => "off", :class => "input-large" %>
+            </div>
+          </div>
+
+          <% if devise_mapping.rememberable? -%>
+        	  <div class="controls">
+        	    <%= f.label :remember_me, :class => "checkbox" do %>
+        	      <%= f.check_box :remember_me %> Remember me
+        	    <% end %>
+        	  </div>
+          <% end -%>
+        	  
+          <div class="controls"><%= f.submit "Sign in", :class => "btn btn-primary" %></div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+
+      </div>
     </div>
   </div>
-
-
-  <div class="control-group">
-    <%= f.label :password, :class => "control-label" %>
-    <div class="controls">
-      <%= f.password_field :password, :autocomplete => "off", :class => "input-xxlarge" %>
-    </div>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-	  <div class="controls">
-	    <%= f.label :remember_me, :class => "checkbox" do %>
-	      <%= f.check_box :remember_me %> Remember me
-	    <% end %>
-	  </div>
-  <% end -%>
-	  
-  <div class="controls"><%= f.submit "Sign in", :class => "btn btn-primary" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

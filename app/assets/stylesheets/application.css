@@ -15,6 +15,7 @@
  *= require font-awesome
  *= require style
  *= require blue
+ *= require colorbox-rails
  *= require_tree .
   */
 
@@ -23,3 +24,4 @@
 #logo {
   text-transform: uppercase;
 }
+

@@ -1,68 +1,109 @@
 <% provide(:title, "Cart") %>
-<div class="jumbotron">
-	<h1>Cart</h1>
-	<hr>
-	<%= form_for @cart,  :as => :cart, :url => cart_path, 
+
+<div class="cart">
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+				<h3 class="title"><i class="icon-shopping-cart"></i> Cart</h3>
+        <br />
+
+					<%= form_for @cart,  :as => :cart, :url => cart_path, 
                         :method => :put, :html => { :class => "row"} do |f| %>
 
-		<div class="span12">
-			<table class="table table-condensed table-hover">
-				<thead>
-					<tr>
-						<th class="span2"> </th>
-						<th><p>Item</p></th>
-						<th class="span3"><p class="text-right">Price</p></th>
-					</tr>
-				</thead>
+		        <table class="table table-striped tcart">
+							<thead>
+		           	<tr>
+			            <th class="span2"><p>Quantity</p></th>
+			            <th><p>Name</p></th>
+			            <th class="span2"><p class="text-right">Unit Price</p></th>
+			            <th class="span2"><p class="text-right">Total</p></th>
+			          </tr>
+			        </thead>
 
-				<tbody>
-					<% @cart.cart_items.each do |cart_item| %>
-						<tr>
-							<td>
-								<%= link_to "X", destroy_cart_item_path(cart_item), :method => :destroy %>
-								<%= number_field "cart_item", cart_item.id,  	:class => "input-mini", 
-    																													:value => cart_item.quantity, :min => "1" %>
-							</td>
-							<td>
-								<%= link_to cart_item.product.name, product_path(cart_item.product) %>
-								<% if !cart_item.variants.empty? %>
-									<ul>
-										<% cart_item.variants.each do |v| %>
-											<li><%= "#{v.name} (#{number_to_currency v.price})" %></li>
-										<% end %>
-									</ul>
-								<% end %>
-							</td>
-							<td>
-								<p class="text-right">
-									<%= number_to_currency cart_item.price %>
-									<br />
-									<%= number_with_precision (usd_to_btc cart_item.price), :precision => 4 %> BTC
-									<br />
-									<%= number_with_precision (usd_to_ltc cart_item.price), :precision => 4 %> LTC&nbsp;
-								</p>
-							</td>
-						</tr>
-					<% end %>
+		          <tbody>
 
-					<td> </td>
-					<td><p class="text-right"><strong>Total:</strong></p></td>
-					<td>
-						<p class="text-right">
-							<%= number_to_currency @cart.total %>
-							<br />
-							<%= number_with_precision (usd_to_btc @cart.total), :precision => 4 %> BTC
-							<br />
-							<%= number_with_precision (usd_to_ltc @cart.total), :precision => 4 %> LTC&nbsp;
-						</p>
-					</td>
-				</tbody>
-			</table>
-			<%= f.submit "Update cart", class: "btn btn-success icon pull-right" %>
-		</div>
-	<% end %>
-  <div class="row">
-		<%= link_to "Checkout", "#", class: "btn btn-primary icon pull-right" %>
-	</div>
+								<% @cart.cart_items.each do |cart_item| %>
 
+			            <tr>
+			              <td>
+												<%= number_field "cart_item", cart_item.id,  	:class => "input-mini", 
+	    																															:value => cart_item.quantity, 
+	    																															:min => "1" %>
+											<div class="row span2">
+												<%= link_to destroy_cart_item_path(cart_item), :method => :destroy,
+																																		 :class => "btn btn-inverse" do %>
+													<i class="icon-remove"></i>
+												<% end %>
+											</div>
+			              </td>
+			              <td>
+											<%= link_to cart_item.product.name, product_path(cart_item.product) %>
+											<% if !cart_item.variants.empty? %>
+												<ul>
+													<% cart_item.variants.each do |v| %>
+														<li><%= "#{v.name} (#{number_to_currency v.price})" %></li>
+													<% end %>
+												</ul>
+											<% end %>
+			              </td>
+			              <td>
+											<p class="text-right">
+												<%= number_to_currency(cart_item.price/cart_item.quantity) %>
+												<br />
+												<%= number_with_precision (usd_to_btc(cart_item.price/cart_item.quantity)), :precision => 4 %> BTC
+												<br />
+												<%= number_with_precision (usd_to_ltc(cart_item.price/cart_item.quantity)), :precision => 4 %> LTC&nbsp;
+											</p>
+			              </td>
+			              <td>
+											<p class="text-right">
+												<%= number_to_currency cart_item.price %>
+												<br />
+												<%= number_with_precision (usd_to_btc cart_item.price), :precision => 4 %> BTC
+												<br />
+												<%= number_with_precision (usd_to_ltc cart_item.price), :precision => 4 %> LTC&nbsp;
+											</p>
+			              </td>
+			            </tr>
+
+			          <% end %>
+
+		            <tr>
+		              <th></th>
+		              <th></th>
+		              <th><p class="text-right">Total</p></th>
+		              <th>
+										<p class="text-right">
+											<%= number_to_currency @cart.total %>
+											<br />
+											<%= number_with_precision (usd_to_btc @cart.total), :precision => 4 %> BTC
+											<br />
+											<%= number_with_precision (usd_to_ltc @cart.total), :precision => 4 %> LTC&nbsp;
+										</p>
+		              </th>
+		            </tr>
+		          </tbody>
+		        </table>
+
+          <div class="row">
+            <div class="span4 offset8">
+              <div class="pull-right">
+              	<%= f.submit "Update cart", class: "btn" %> 
+              </div>
+            </div>
+          </div>
+
+				<% end %>
+
+          <div class="row">
+            <div class="span4 offset8">
+              <div class="pull-right">
+                <%= link_to "Checkout", "#", class: "btn btn-success" %>
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
 </div>

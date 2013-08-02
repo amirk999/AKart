@@ -1,32 +1,41 @@
 <% provide(:title, "Categories") %>
-<div class="jumbotron">
-	<h1>Categories</h1>
-	  <% @categories.each do |category| %>
-	  	<ul class="thumbnails">
-	  		<li class="span5 clearfix">
-					<div class="thumbnail clearfix">
-						<%= image_tag category.image.image.url(:main), :class => "pull-left span2 clearfix", 
-																												 :style => "margin-right:10px" %>
-						<div class="caption" class="pull-left">
-							<%= link_to "Open", category, :class => "btn btn-primary icon pull-right" %>
-							<h4>
-								<%= link_to category.name, category %>
-							</h4>
-							<% if (current_user) && (current_user.has_role? :admin) %>
-								<%= link_to "Edit", edit_category_path(category), 
-																		:class => "btn btn-secondary icon pull-right" %><br /><br />
-								<%= link_to "Delete", category,
-																		:method => :delete,
-																		:class => "btn btn-mini btn-danger icon pull-right",
-																		:confirm => "Are you sure?" %>
-							<% end %>
-						</div>
-					</div>
-	  		</li>
-	  	</ul>
-	<% end %>
-	<% if (current_user) && (current_user.has_role? :admin) %>
-	<%= link_to "New category", new_category_path, 
-											:class => "btn btn-success icon" %>
-	<% end %>
+
+<div class="items">
+  <div class="container">
+    <div class="row">
+
+   		<div class="span12">
+   			<h4 class="pull-left">Categories</h4>
+   			<div class="clearfix"></div>
+   			<div class="row">
+   				<% @categories.each do |category| %>
+            <div class="span3">
+              <div class="item">
+                <div class="item-image">
+                	<%= link_to category do %>
+										<%= image_tag category.image.image.url(:main) %>
+                  <% end %>
+                </div> 
+								<div class="item-details">
+	                <h5><%= link_to category.name, category %></h5>
+	                <div class="clearfix"></div>
+	                <hr />
+	                <div class="button pull-right">
+	                	<%= link_to "See more...", category %>
+	                </div>
+	                <div class="clearfix"></div>
+                </div>  	
+             	</div>
+            </div>
+
+   				<% end %>
+   			</div>
+
+				<% if (current_user) && (current_user.has_role? :admin) %>
+				<%= link_to "New category", new_category_path, 
+														:class => "btn btn-success icon" %>
+				<% end %>
+   		</div>
+    </div>
+  </div>
 </div>

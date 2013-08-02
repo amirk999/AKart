@@ -19,4 +19,5 @@
 //= require jquery.flexslider-min
 //= require jquery.carouFredSel-6.1.0-packed
 //= require custom
+//= require colorbox-rails
 //= require_tree .

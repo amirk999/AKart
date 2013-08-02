@@ -11,13 +11,10 @@
       <!-- Use the span tag with the class "ico" and icon link (hot, sale, deal, new) -->
       <h5>
       	<%= link_to product.name, product_path(product) %>
-      	<span class="ico">
-      		<%= image_tag "/img/hot.png" %>
-      	</span>
       </h5>
       
       <div class="clearfix"></div>
-      <p><%= truncate_html product.description, :length => 25 %></p>
+      <p><%= truncate_html product.description, :length => 50 %></p>
       <hr />
       <div class="item-price pull-left">
       	<%= number_to_currency product.price %>

@@ -1,22 +1,30 @@
 <% provide(:title, @category.name) %>
-<div class="jumbotron">
-	<h1><%= @category.name %></h1>
 
-	<ul class="thumbnails">
-	<% @products.each do |product| %>
-		<%= render "shared/product", :product => product %>
-	<% end %>
-	</ul>
-	
-	<% if (current_user) && (current_user.has_role? :admin) %>
-		<hr>
-		<%= link_to "New product", new_product_path(:cat_id => @category),
-											:class => "btn btn-success icon" %>
-		<%= link_to "Edit", edit_category_path(@category), 
-											:class => "btn btn-primary icon" %>
-		<%= link_to "Delete", @category,
-											:method => :delete,
-											:class => "btn btn-danger icon",
-											:confirm => "Are you sure?" %>
-	<% end %>
+<div class="items">
+  <div class="container">
+    <div class="row">
+
+   		<div class="span12">
+   			<h4 class="pull-left"><%= @category.name %></h4>
+   			<div class="clearfix"></div>
+   			<div class="row">
+   				<% @products.each do |product| %>
+						<%= render "shared/product", :product => product %>
+   				<% end %>
+   			</div>
+
+				<% if (current_user) && (current_user.has_role? :admin) %>
+					<hr>
+					<%= link_to "New product", new_product_path(:cat_id => @category),
+														:class => "btn btn-success icon" %>
+					<%= link_to "Edit", edit_category_path(@category), 
+														:class => "btn btn-primary icon" %>
+					<%= link_to "Delete", @category,
+														:method => :delete,
+														:class => "btn btn-danger icon",
+														:confirm => "Are you sure?" %>
+				<% end %>
+   		</div>
+    </div>
+  </div>
 </div>

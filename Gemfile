@@ -8,6 +8,7 @@ gem 'cancan'
 gem 'rolify'
 gem "paperclip", "~> 3.0"
 gem "truncate_html"
+gem 'colorbox-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

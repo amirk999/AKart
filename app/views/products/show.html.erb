@@ -1,40 +1,122 @@
 <% provide(:title, @product.name) %>
-<div class="center jumbotron">
-	<h1><%= @product.name %></h1>
-	<h4><%= number_to_currency @product.price %></h4>
-</div>
-<hr>
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="span2">
-      <div class="row">
-        <%= link_to @product.main_image.image.url(:popout), :class => "gallery", 
-                              :data => { :colorbox => true } do %>
-          <%= image_tag @product.main_image.image.url(:small) %>
-        <% end %> 
-      </div>
-      <br />
-      <% @product.additional_images.each do |image| %>
-        <div class="row">
-          <%= link_to image.image.url(:popout), :class => "gallery", 
-                              :data => { :colorbox => true } do %>
-          <%= image_tag image.image.url(:small) %>
-        <% end %> 
+
+<div class="items">
+  <div class="container">
+    <div class="row">
+      <%= render 'layouts/sidebar' %>
+      <div class="span9">
+
+        <div class="product-main">
+          <div class="row">
+            <div class="span4">
+
+              <!-- Image. Flex slider -->
+                <div class="product-slider">
+                  <div class="product-image-slider flexslider">
+                    <ul class="slides">
+                        <!-- Each slide should be enclosed inside li tag. -->
+                      <li>
+                        <%= link_to @product.main_image.image.url(:popout), :class => "gallery", 
+                                              :data => { :colorbox => true } do %>
+                          <%= image_tag @product.main_image.image.url(:main) %>
+                        <% end %> 
+                      </li>
+
+                      <% @product.additional_images.each do |image| %>
+                        <li>
+                          <%= link_to image.image.url(:popout), :class => "gallery", 
+                                                                :data => { :colorbox => true } do %>
+                            <%= image_tag image.image.url(:main) %>
+                          <% end %>
+                        </li> 
+                      <% end %>
+                    </ul>
+                  </div>
+              </div>
+
+            </div>
+            <div class="span5">
+              <!-- Title -->
+                <h4 class="title"><%= @product.name %></h4>
+                <h5>Price : <%= number_to_currency @product.price %></h5>
+                <p>SKU : <%= @product.sku %></p>
+
+                <% if @product.variant_categories.empty? %>
+                  <div class="input-append cart-quantity">
+                    <%= form_for @product,  :as => :product, 
+                                            :url => cart_items_path(:product_id => @product), 
+                                            :method => :post, 
+                                            :html => { :class => "form-horizontal"} do |f| %>
+                      <%= number_field "cart_item", "quantity", :class => "input-mini", 
+                                                                :value => "1", :min => "1" %>
+
+                      <%= f.submit "Add to cart", class: "btn" %>
+                    <% end %>
+                  </div>
+                  <% else %>
+                    To order, please see the options tab
+                  <% end %>
+
+                <div class="addthis_toolbox addthis_default_style ">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+                </div>
+                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-50e06de237d5cb9d"></script>
+            </div>
+          </div>
         </div>
-        <br />
-      <% end %>
-    </div>
-    <div class="span10">
-      <h2><%= @product.description.html_safe %></h2>
-      <hr>
-      <%= render 'product' %>
+
+<br />
+        
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
+          <% if !@product.variant_categories.empty? %>
+            <li><a href="#tab2" data-toggle="tab">Options</a></li>
+          <% end %>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab1">
+            <%= @product.description.html_safe %>
+          </div>
+
+          <% if !@product.variant_categories.empty? %>
+            <div class="tab-pane" id="tab2">
+              <%= form_for @product,  :as => :product, 
+                                      :url => cart_items_path(:product_id => @product), 
+                                      :method => :post, 
+                                      :html => { :class => "form-horizontal"} do |f| %>
+                <%= render 'error_messages' %>
+
+                <% @product.variant_categories.each do |vc| %>
+                  <strong><%= vc.name %></strong>
+
+                  <% vc.variants.each do |v| %>
+                    <%= f.label v.name, :class => "radio" do %>
+
+                    <%= radio_button "variant", vc.id, v.id, :checked => (v == vc.variants.first) %>
+                    <%= "#{v.name } (#{number_to_currency v.price})" %>
+
+                    <% end %>
+                  <% end %>
+                  <br />
+                <% end %>
+
+                <%= number_field "cart_item", "quantity", :class => "input-small", 
+                                                          :value => "1", :min => "1" %>
+                <%= f.submit "Add to cart", class: "btn" %>
+              <% end %>            
+            </div>
+          <% end %>
+      </div>
     </div>
   </div>
 </div>
-<% if (current_user) && (current_user.has_role? :admin) %>
-  <hr>
-	<%= link_to "Edit", edit_product_path(@product), :class => "btn btn-primary icon" %>
-	<%= link_to "Delete", @product, :method => :delete, 
-																	:class => "btn btn-danger icon", 
-																	:confirm => "Are you sure?" %>
-<% end %>
+
+
+
+

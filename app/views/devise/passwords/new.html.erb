@@ -1,18 +1,27 @@
-<h2>Forgot your password?</h2>
+<div class="items">
+  <div class="container">
+    <div class="row">
+      <div class="span9">
+        <h5 class="title">Forgot your password</h5>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), 
-		:html => { :method => :post, :class => "form-horizontal" }) do |f| %>
-  <%= devise_error_messages! %>
+          <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), 
+          		:html => { :method => :post, :class => "form-horizontal" }) do |f| %>
+            <%= devise_error_messages! %>
 
-  <div class="control-group">
-    <%= f.label :email, :class => "control-label" %>
-    <div class="controls">
-      <%= f.email_field :email, :autofocus => true, :class => "input-xxlarge" %>
+            <div class="control-group">
+              <%= f.label :email, :class => "control-label" %>
+              <div class="controls">
+                <%= f.email_field :email, :autofocus => true, :class => "input-xxlarge" %>
+              </div>
+            </div>
+
+            <div class="controls">
+            		<%= f.submit "Send me reset password instructions", :class => "btn btn-primary" %>
+            </div>
+          <% end %>
+          <%= render "devise/shared/links" %>
+
+      </div>
     </div>
   </div>
-
-  <div class="controls">
-  		<%= f.submit "Send me reset password instructions", :class => "btn btn-primary" %>
-  </div>
-<% end %>
-<%= render "devise/shared/links" %>
+</div>

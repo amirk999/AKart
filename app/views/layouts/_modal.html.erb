@@ -15,33 +15,25 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a href="single-item.html">HTC One</a></td>
-        <td>2</td>
-        <td>$250</td>
-      </tr>
-      <tr>
-        <td><a href="single-item.html">Apple iPhone</a></td>
-        <td>1</td>
-        <td>$502</td>
-      </tr>
-      <tr>
-        <td><a href="single-item.html">Galaxy Note</a></td>
-        <td>4</td>
-        <td>$1303</td>
-      </tr>
+      <% current_cart.cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= link_to cart_item.product.name, cart_item.product %></td>
+          <td><%= cart_item.quantity %></td>
+          <td><%= number_to_currency cart_item.price %></td>
+        </tr>
+      <% end %>
       <tr>
         <th></th>
         <th>Total</th>
-        <th>$2405</th>
+        <th><%= number_to_currency current_cart.total %></th>
       </tr>
     </tbody>
   </table>
 
 </div>
 <div class="modal-footer">
-  <a href="index.html" class="btn">Continue Shopping</a>
-  <a href="checkout.html" class="btn btn-danger">Checkout</a>
+  <%= link_to "View cart", cart_path, :class => "btn" %>
+  <%= link_to "Checkout", "#", :class => "btn btn-danger" %>
 </div>
 </div>
 
