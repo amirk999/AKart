@@ -2,6 +2,19 @@ module ApplicationHelper
 	require "json"
 	require "open-uri"
 
+  # Allows the Devise forms to be displayed anywhere in the app
+  def resource_name
+    :user
+  end
+   
+  def resource
+    @resource ||= User.new
+  end
+   
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+
 	# Returns the full title on a per-page basis.
   def full_title(page_title)
     base_title = "AKart"

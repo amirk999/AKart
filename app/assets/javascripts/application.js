@@ -12,7 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 //= require jquery_nested_form
 //= require bootstrap
-//= require colorbox-rails
+//= require jquery.prettyPhoto
+//= require filter
+//= require jquery.flexslider-min
+//= require jquery.carouFredSel-6.1.0-packed
+//= require custom
+//= require_tree .

@@ -9,6 +9,8 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+ENV.update YAML.load_file('config/config.yml')[Rails.env] rescue {}
+
 module Akart2
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

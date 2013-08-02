@@ -1,0 +1,13 @@
+defaults: &defaults
+  store_title: AKart
+  store_slogan: Open source shopping
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+  app_title: My Awesome App (TEST ENV)
+
+production:
+  <<: *defaults

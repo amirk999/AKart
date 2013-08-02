@@ -1,70 +1,55 @@
-<div class="navbar navbar-fixed-top navbar-inverse">  
-  <div class="navbar-inner">  
-    <div class="container">  
-      
-      <ul class="nav">  
-        <li>  
-          <%= link_to "AKart", root_path, id: "logo" %>
-        </li>  
-      </ul>
+<!-- Header starts -->
+<header>
+  <div class="container">
+    <div class="row">
 
-      <ul class="nav">  
-        <li class="dropdown">  
-          <%= link_to categories_path, :class => "dropdown-toggle", 
-                                           :'data-toggle' => "dropdown" do %>
-            Shop
-            <b class="caret"></b> 
-          <% end %>
-          <ul class="dropdown-menu"> 
-            <% Category.all.each do |category| %>
-              <li><%= link_to category.name, category %></li>
+      <div class="span4">
+        <!-- Logo. Use class "color" to add color to the text. -->
+        <div class="logo">
+          <h1><%= link_to ENV['store_title'], root_path, id: "logo" %></h1>
+          <p class="meta">Open source shopping</p>
+        </div>
+      </div>
+
+      <div class="span5 offset3">
+        
+        <!-- Search form -->
+        <form class="form-search">
+          <div class="input-append">
+            <input class="span3" id="appendedInputButton" type="text" placeholder="Enter something to search">
+            <button class="btn" type="button">Search</button>
+          </div>
+        </form>
+
+        <div class="hlinks">
+          <span>
+
+            <!-- item details with price -->
+            <%= link_to "#cart", :role => "button", :data => {:toggle => "modal"} do %>
+              <%= pluralize current_cart.cart_items.count, 'item' %>
+              <i class="icon-shopping-cart"></i>
+              <span class="bold">
+                <%= number_to_currency current_cart.total %>
+              </span>  
             <% end %>
-              <li><%= link_to "View all", categories_path %></li>
-          </ul>  
-        </li>  
-      </ul>
+          </span>
 
-      <ul class="nav">  
-          <li><%= link_to "Help",    help_path %></li>
-          <li><%= link_to "Contact", contact_path %></li>
-          <li><%= link_to "Cart", cart_path %></li>
-      </ul>
-      <div class="pull-right">
-        <ul class="nav pull-right">
-          <% if !user_signed_in? %>
-            <li>
-              <%= link_to "Register", new_user_registration_path %>
-            </li>
-            <li>
-              <%= link_to "Log in", new_user_session_path %>
-            </li>
-          <% else %>
-            <li class="dropdown">
-              <%= link_to "#", :class =>"dropdown-toggle", :'data-toggle' => "dropdown" do %>
-                <%= current_user.email %>
-                <b class="caret"></b>
-              <% end %>
-              <ul class="dropdown-menu">
-                <li>
-                  <%= link_to profile_path do %>
-                  <i class="icon-user"></i>Account
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to "#" do %>
-                    <i class="icon-folder-close"></i>Orders
-                  <% end %>
-                </li>
-                <li class="divider"></li>
-                <li>
-                    <%= link_to destroy_user_session_path, :method => :delete do %>
-                      <i class="icon-off"></i>Logout
-                    <% end %>
-                </li>
-              </ul>
-          <% end %>
-        </ul>
-      </div>   
-    </div>  
-  </div>  
-</div> 
+          <!-- Login and Register link -->
+          <span class="lr">
+            <% if !user_signed_in? %>
+              <%= link_to "Login", "#login", :role => "button", :data => {:toggle =>"modal"} %>
+              |
+              <%= link_to "Register", "#register", :role => "button", :data => {:toggle =>"modal"} %>
+            <% else %>
+              <%= link_to "Profile", profile_path %> | 
+              <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+            <% end %>
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</header>
+<!-- Header ends -->

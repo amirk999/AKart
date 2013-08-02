@@ -1,0 +1,144 @@
+<!-- Cart Modal starts -->
+<div id="cart" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h4>Shopping Cart</h4>
+</div>
+<div class="modal-body">
+
+  <table class="table table-striped tcart">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="single-item.html">HTC One</a></td>
+        <td>2</td>
+        <td>$250</td>
+      </tr>
+      <tr>
+        <td><a href="single-item.html">Apple iPhone</a></td>
+        <td>1</td>
+        <td>$502</td>
+      </tr>
+      <tr>
+        <td><a href="single-item.html">Galaxy Note</a></td>
+        <td>4</td>
+        <td>$1303</td>
+      </tr>
+      <tr>
+        <th></th>
+        <th>Total</th>
+        <th>$2405</th>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="modal-footer">
+  <a href="index.html" class="btn">Continue Shopping</a>
+  <a href="checkout.html" class="btn btn-danger">Checkout</a>
+</div>
+</div>
+
+<!-- Cart modal ends -->
+
+<!-- Login Modal starts -->
+<div id="login" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4>Login</h4>
+  </div>
+
+  <div class="modal-body">
+
+    <div class="form">
+
+      <!-- Login form -->
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),
+                             :html => { :class => "form-horizontal" }) do |f| %>
+
+        <div class="control-group">
+          <%= f.label :email, :class => "control-label" %>
+          <div class="controls">
+            <%= f.email_field :email, :class => "input-large" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= f.label :password, :class => "control-label" %>
+          <div class="controls">
+            <%= f.password_field :password, :autocomplete => "off", :class => "input-large" %>
+          </div>
+        </div>
+
+        <div class="controls">
+          <%= f.label :remember_me, :class => "checkbox" do %>
+            <%= f.check_box :remember_me %> Remember me
+          <% end %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.submit "Sign in", :class => "btn" %>
+        </div>
+      <% end %>
+    </div> 
+
+  </div>
+  <div class="modal-footer">
+    <p>Dont have account? <%= link_to "Register", new_user_registration_path %> here.</p>
+  </div>
+</div>
+
+<!-- Login modal ends -->
+
+<!-- Register Modal starts -->
+
+<div id="register" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4>Register</h4>
+  </div>
+  <div class="modal-body">
+    <div class="form">
+      <!-- Register form -->
+        <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), 
+                :html => { :class => "form-horizontal" } ) do |f| %>
+
+          <div class="control-group">
+            <%= f.label :email, :class => "control-label" %>
+            <div class="controls">
+              <%= f.email_field :email, :class => "input-large" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :password, :class => "control-label" %>
+            <div class="controls">
+              <%= f.password_field :password, :autocomplete => "off", :class => "input-large" %>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :password_confirmation, :class => "control-label" %>
+            <div class="controls">
+              <%= f.password_field :password_confirmation, :autocomplete => "off", :class => "input-large" %>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+             <%= f.submit "Sign up", :class => "btn" %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <p>Already have account? <%= link_to "Login", new_user_session_path %> here.</p>
+  </div>
+</div>
+
+<!-- Register modal ends -->

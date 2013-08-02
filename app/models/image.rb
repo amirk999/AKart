@@ -1,7 +1,7 @@
 class Image < ActiveRecord::Base
   attr_accessible :category_id, :product_additional_id, :product_main_id, :product_slider_id, :image
 
-  has_attached_file :image, :styles => { 	:slider => "940x300>", 
+  has_attached_file :image, :styles => { 	:slider => "940x330#", 
   																				:main => "320x200>", 
   																				:small => "192x120>",
   																				:popout => "1024x800>"}

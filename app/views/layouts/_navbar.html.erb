@@ -1,0 +1,36 @@
+<!-- Navigation -->
+<div class="navbar">
+ <div class="navbar-inner">
+   <div class="container">
+     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+     </a>
+     <div class="nav-collapse collapse">
+       <ul class="nav">
+         <li>
+            <%= link_to root_path do %>
+              <i class="icon-home"></i>
+            <% end %>
+          </li>
+          <li class="dropdown">  
+            <%= link_to categories_path,  :class => "dropdown-toggle", 
+                                          :data => { :toggle => "dropdown" } do %>
+              Shop
+              <b class="caret"></b> 
+            <% end %>
+            <ul class="dropdown-menu"> 
+              <% Category.all.each do |category| %>
+                <li><%= link_to category.name, category %></li>
+              <% end %>
+                <li><%= link_to "View all", categories_path %></li>
+            </ul>  
+          </li>            
+          <li><%= link_to "Help",    help_path %></li>
+          <li><%= link_to "Contact", contact_path %></li>
+       </ul>
+     </div>
+    </div>
+ </div>
+</div>
