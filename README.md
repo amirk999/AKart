@@ -11,24 +11,23 @@ THIS IS NOT COMPLETE AND SHOULD NOT BE USED IN A PRODUCTION ENVIRONMENT
 
 Getting Started
 -----
-1. Get the latest code and migrate the database:
+Get the latest code and migrate the database:
 
 ```ruby
 rake db:migrate
 ```
 
-2. Create the user (either through the console or the web interface)
+Create the user (either through the console or the web interface)
 
-3. Open the rails console and add the admin role to the user:
+Open the rails console and add the admin role to the user:
 
 ```ruby
 user = User.find(1)
 user.add_role :admin
 ```
+(Coming soon) Change the config files to point to your Bitcoin and Litecoin daemons
 
-4. (Coming soon) Change the config files to point to your Bitcoin and Litecoin daemons
-
-5. All done! Start adding categories and products!
+All done! Start adding categories and products!
 
 TODO
 -----
