@@ -6,6 +6,7 @@ Akart2::Application.routes.draw do
   resources :categories
   
   resources :products 
+  resources :currency_types
   
   #do
   #  resources :variant_categories do
@@ -14,15 +15,16 @@ Akart2::Application.routes.draw do
   #end
 
 
-  match '/help',          to: 'static_pages#help',                              via: 'get'
-  match '/contact',       to: 'static_pages#contact',                           via: 'get'
-  match '/about',         to: 'static_pages#about',                             via: 'get'
-  match '/profile',       to: 'profiles#edit',      :as => :profile,            via: 'get'
-  match '/profile',       to: 'profiles#update',    :as => :profile,            via: 'put'
-  match '/cart_items',    to: 'cart_items#create',  :as => :cart_items,         via: 'post'
-  match '/cart_item/:id', to: 'cart_items#destroy', :as => :destroy_cart_item,  via: 'post'
-  match '/cart',          to: 'carts#show',         :as => :cart,               via: 'get'
-  match '/cart',          to: 'carts#update',       :as => :cart,               via: 'put'
+  match '/help',              to: 'static_pages#help',                               via: 'get'
+  match '/contact',           to: 'static_pages#contact',                            via: 'get'
+  match '/about',             to: 'static_pages#about',                              via: 'get'
+  match '/profile',           to: 'profiles#edit',        :as => :profile,           via: 'get'
+  match '/profile',           to: 'profiles#update',      :as => :profile,           via: 'put'
+  match '/cart_items',        to: 'cart_items#create',    :as => :cart_items,        via: 'post'
+  match '/cart_item/:id',     to: 'cart_items#destroy',   :as => :destroy_cart_item, via: 'post'
+  match '/cart',              to: 'carts#show',           :as => :cart,              via: 'get'
+  match '/cart',              to: 'carts#update',         :as => :cart,              via: 'put'
+  match '/createwallet/:id',  to: 'profiles#createwallet',:as => :create_wallet,     via: 'post'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

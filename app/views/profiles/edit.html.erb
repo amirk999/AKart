@@ -10,5 +10,46 @@
     </div>
     <%= link_to "Change your e-mail or password", edit_user_registration_path, 
 							:class => "btn btn-inverse icon" %>
+    
+    <div class="row">
+      <div class="span9"><hr>
+        <h4 class="pull-left">Wallets</h4>
+        <div class="clearfix"></div>
+        <div class="row">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Currency</th>
+                <th>Address</th>
+                <th>Confirmed Balance</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% CurrencyType.all.each do |currType| %>
+                <tr>
+                  <td><%= currType.name %></td>
+                  <% if @profile.wallets.where(:currency_type_id => currType.id).blank? %>
+                    <td>N/A</td>
+                    <td>0.0</td>
+                    <td>
+                      <%= button_to "Generate wallet", create_wallet_path(currType), :method => :post, :class => "btn" %>
+                    </td>
+                  <% else %>
+                    <td>
+                      <%= @profile.wallets.where(:currency_type_id => currType.id).first.address %>
+                    </td>
+                    <td>
+                      <%= @profile.wallets.where(:currency_type_id => currType.id).first.confirmed_balance %>
+                    </td>
+                    <td></td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,4 +1,6 @@
 class CartItemsController < ApplicationController
+	
+	authorize_resource :class => false
 
 	def create
 		@cart = current_cart

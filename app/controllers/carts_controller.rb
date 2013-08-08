@@ -1,4 +1,7 @@
 class CartsController < ApplicationController
+
+	authorize_resource :class => false
+	
 	def show
 		@cart = current_cart
 	end

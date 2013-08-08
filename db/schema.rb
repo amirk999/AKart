@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130802014637) do
+ActiveRecord::Schema.define(:version => 20130808174348) do
 
   create_table "cart_items", :force => true do |t|
     t.decimal  "price"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(:version => 20130802014637) do
   end
 
   add_index "categories", ["name"], :name => "index_categories_on_name", :unique => true
+
+  create_table "currency_types", :force => true do |t|
+    t.string   "name"
+    t.string   "rpcuser"
+    t.string   "rpcpass"
+    t.string   "rpchost"
+    t.integer  "rpcport"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "images", :force => true do |t|
     t.integer  "category_id"
@@ -140,6 +150,17 @@ ActiveRecord::Schema.define(:version => 20130802014637) do
     t.integer  "variant_category_id"
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
+  end
+
+  create_table "wallets", :force => true do |t|
+    t.string   "address"
+    t.string   "private_key"
+    t.integer  "profile_id"
+    t.string   "currency_type_id"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.decimal  "confirmed_balance", :default => 0.0
+    t.decimal  "pending_balance",   :default => 0.0
   end
 
 end

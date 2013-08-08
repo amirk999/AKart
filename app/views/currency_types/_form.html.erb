@@ -1,0 +1,43 @@
+<%= form_for @currencyType, :html => { :class => "form-horizontal"} do |f| %>
+	<%= render 'shared/formerror', :f => @currencyType %>
+
+  <div class="control-group">
+    <%= f.label :name, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :name, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "RPC host", :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :rpchost, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <%= f.label "RPC username", :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :rpcuser, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <%= f.label "RPC password", :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :rpcpass, :class => "input-xxlarge" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "RPC port", :class => "control-label" %>
+    <div class="controls">
+      <%= f.number_field :rpcport, :class => "input-large" %>
+    </div>
+  </div>
+
+  <hr>
+  <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>

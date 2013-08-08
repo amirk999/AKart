@@ -9,8 +9,10 @@ class Ability
     if user.has_role? :admin #for now, a signed in user can do everything
         can :manage, :all
     else
-        can :read, :all
-        can :manage, Profile
+        can :read, [Category, Product]
+        can [:edit, :update], :profile
+        can [:create, :show], :cart_item
+        can [:show, :update], :cart
     end
     #   if user.admin?
     #     can :manage, :all

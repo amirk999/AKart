@@ -1,0 +1,43 @@
+<% provide(:title, "Currency Types") %>
+
+<div class="items">
+  <div class="container">
+    <div class="row">
+
+   		<div class="span12">
+   			<h4 class="pull-left">Currency Types</h4>
+   			<div class="clearfix"></div>
+   			<div class="row">
+					<table class="table table-striped">
+		        <thead>
+		          <tr>
+		            <th>Name</th>
+		            <th>RPC Host</th>
+		            <th>Actions</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		        	<% @currencyTypes.each do |currType| %>
+		        		<tr>
+		        			<td><%= currType.name %></td>
+		        			<td><%= currType.rpchost %></td>
+		        			<td>
+		        				<%= link_to "Edit", edit_currency_type_path(currType),
+		        														:class => "btn icon" %>
+		        				 
+										<%= link_to "Delete", currType,
+														:method => :delete,
+														:class => "btn btn-danger icon",
+														:confirm => "Are you sure?" %>
+		        			</td>
+		        		</tr>
+		        	<% end %>
+		        </tbody>
+	     		</table>
+   			</div>
+				<%= link_to "New currency", new_currency_type_path, 
+														:class => "btn btn-success icon" %>
+   		</div>
+    </div>
+  </div>
+</div>

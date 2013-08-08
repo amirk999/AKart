@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  address: MyString
+  private_key: MyString
+  profile_id: 1
+  currency_type_id: MyString
+
+two:
+  address: MyString
+  private_key: MyString
+  profile_id: 1
+  currency_type_id: MyString

@@ -2,6 +2,8 @@ class Product < ActiveRecord::Base
 	before_destroy :ensure_not_referenced_by_any_cart_item
 	default_scope order('name ASC')
 
+  resourcify
+
   belongs_to :category
   has_many :variant_categories, :dependent => :destroy
   has_many :cart_items
