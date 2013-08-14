@@ -16,3 +16,4 @@
 
 # Ignore all generated images
 /public/system/images/**/*
+/config/database.yml
