@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20130808174348) do
   end
 
   create_table "carts", :force => true do |t|
-    t.decimal  "total",      :precision => 20, :scale => 4, :default => 0.0
+    t.decimal  "total",      :precision => 20, :scale => 4, :default => 0.0, :null => false
     t.datetime "created_at",                                                 :null => false
     t.datetime "updated_at",                                                 :null => false
   end

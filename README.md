@@ -33,10 +33,9 @@ TODO
 -----
 The following is listed in order of priority:
 
-1. Model the wallets
-2. Integrate the daemon calls with the wallet
-3. Create an order page
-4. Link the order to the user's account
-5. Add test cases for everything completed until this point
-6. Add an admin interface
-7. Integrate with PayPal
+- Integrate the daemon calls with the wallet
+- Create an order page
+- Link the order to the user's account
+- Add test cases for everything completed until this point
+- Add an admin interface
+- Integrate with PayPal
